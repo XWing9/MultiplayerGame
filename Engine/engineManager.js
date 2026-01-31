@@ -13,7 +13,7 @@ class EngineManager{
         this.Graphics = new Graphics(gameCanvas)
         
         await this.Graphics.loadImage(
-            "player","../images/character/player.png",
+            "player","../images/character/player.png"
             
         )
 
@@ -39,7 +39,7 @@ class EngineManager{
     physicsUpdate(delta){
         //call stuff in physics to update... well physics
     }
-
+    
     //change to generall draw function
     draw(gameCanvas){
         if(!this.Graphics){
