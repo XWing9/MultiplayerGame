@@ -1,14 +1,17 @@
 export class InputManager{
-    constructor(){
-        this.trackInput()
-    }
-    
-    trackInput(){
-        console.log("tracker entered")
-        window.addEventListener("keydown", (e) => {
-            if(e.code == "KeyW"){
-                console.log("Wpressed")
-            }
+        constructor() {
+        this.keys = new Set()
+
+        window.addEventListener("keydown", e => {
+            this.keys.add(e.code)
         })
+
+        window.addEventListener("keyup", e => {
+            this.keys.delete(e.code)
+        })
+    }
+
+    isKeyDown(key) {
+        return this.keys.has(key)
     }
 }

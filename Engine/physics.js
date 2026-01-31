@@ -4,18 +4,13 @@ export class Physics{
     constructor(fixedDelta){
         this.fixedDelta = 60
         this.physicsAccumulator = 0
-        this.physics = []
-    }
-
-    addPhysicsToQueue(func){
-        this.physics.push(func)
     }
     
-    updatePhysics(delta){
+    updatePhysics(physicsList,delta){
         this.physicsAccumulator += delta
 
         while(this.physicsAccumulator >= this.fixedDelta){
-            for(const func of this.addPhysicsToQueue){
+            for(const func of physicsList){
                 func(this.fixedDelta)
             }
             this.physicsAccumulator -= this.fixedDelta

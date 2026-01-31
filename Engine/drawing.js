@@ -7,6 +7,7 @@ export class Graphics{
         this.queue = []
         this.images = new Map() //dictionary
 
+        this.changeCanvasBackground("black")
     }
 
     //loads one image
@@ -40,7 +41,6 @@ export class Graphics{
 
     //depending on render function remove
     drawImage(name,x,y){
-        console.log(name)
         const img = this.images.get(name)
 
         if (!img){

@@ -2,13 +2,23 @@ import { Graphics } from "./drawing.js"
 import { Physics } from "./physics.js"
 import { Frames } from "./loop.js"
 import { InputManager } from "./InputManager.js"
+import { NetworkManager } from "./networking.js"
+import { Entity } from "./entitys.js"
 
 //entry point of the engine
 class EngineManager{
     constructor(){
         this.Graphics = null
+        this.Physics = null
+        this.Frames = null
+        this.InputManager = null
+        this.NetworkManager = null
+        this.Entity = null
+
         this.updateQueue = []
         this.physicsQueue = []
+        this.entityList = []
+
     }
 
     startEngine = async (gameCanvas) => {
@@ -23,6 +33,7 @@ class EngineManager{
             "testPlayer","../images/character/testPlayer.png"
         )
 
+        //directly starts the main loop and all relevant sub loops that are needed
         this.Frames = new Frames((delta) => {
             //add network to
             this.update(delta)
@@ -34,31 +45,34 @@ class EngineManager{
         this.Physics = new Physics(60)
 
         this.InputManager = new InputManager()
-        this.InputManager.trackInput()
 
         console.log("engine started!")
     }
 
     update(delta){
-        //executes the functions itself from the array
         for (const func of this.updateQueue){
             func(delta)
         }
     }
 
     physicsUpdate(delta){
-        //call stuff in physics to update... well physics
-        this.Physics.updatePhysics(delta)
+        this.Physics.updatePhysics(this.physicsQueue,delta)
     }
     
     //change to generall draw function
-    draw(gameCanvas){
+    draw(){
         if(!this.Graphics){
           console.log("engine isnt started!")
           return  
-        } 
+        }
+        
+        for(const entity of this.entityList){
+            const entityImage = this.entityList[entity].Image
+            const entityX = this.entityList[entity].x
+            const entityY = this.entityList[entity].y
+            this.Graphics.drawImage(entityImage,entityX,entityY)
+        }
 
-        this.Graphics.changeCanvasBackground("black")
         this.Graphics.drawCircle(200,70,20,"blue")
 
         this.Graphics.drawImage("player",50,50)
@@ -67,11 +81,22 @@ class EngineManager{
         console.log("drawed")
     }
 
-    drawPlayer(playerPos){
+    loadImages(){
+        
+    }
 
+    createEntity(name,x,y,Image){
+        const entity = new Entity(name,x,y,Image)
+        this.entityList.push(entity)
+    }
+
+    //wrapper methods
+    isKeyDown(key){
+        return this.InputManager.isKeyDown(key)
     }
 }
 
+//makes it into goddot singelton version more or less
 export const engine = new EngineManager()
 
 //engine flow:
