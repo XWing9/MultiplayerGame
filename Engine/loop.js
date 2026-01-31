@@ -1,12 +1,13 @@
 //class to handle _process frames
 export class Frames{
-    constructor() {
+    //delta = elapsed time since the last frame
+    constructor(onUpdate) {
         this.FPS = 60
-
         this.running = false
         this.lastTime = 0
         this.delta = 0
-        this.frameInterval = 1/this.FPS
+
+        this.onUpdate = onUpdate
     }
 
     startLoop() {
@@ -15,6 +16,7 @@ export class Frames{
         requestAnimationFrame(this.loop)
     }
 
+    //delta calc
     loop = (time) => {
         if (!this.running) return
 
@@ -22,15 +24,11 @@ export class Frames{
         this.delta = currentFrame - this.lastTime
         this.lastTime = currentFrame
 
+        if(this.onUpdate){
+            this.onUpdate(this.delta)
+        }
         //makes sure loop keeps running in the background
         //console.log("Frame")
         requestAnimationFrame(this.loop)
     }
-
-    //werererer
-
-    getDelta(){
-        return this.delta
-    }
-
 }
