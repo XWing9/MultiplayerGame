@@ -40,6 +40,7 @@ export class Graphics{
 
     //depending on render function remove
     drawImage(name,x,y){
+        console.log(name)
         const img = this.images.get(name)
 
         if (!img){
@@ -47,7 +48,7 @@ export class Graphics{
             return
         }
         this.brush.drawImage(img,x,y)
-        console.log("image should be drawn")
+        //console.log("image should be drawn")
     }
 
     //remove

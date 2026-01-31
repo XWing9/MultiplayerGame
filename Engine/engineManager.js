@@ -1,6 +1,7 @@
 import { Graphics } from "./drawing.js"
 import { Physics } from "./physics.js"
 import { Frames } from "./loop.js"
+import { InputManager } from "./InputManager.js"
 
 //entry point of the engine
 class EngineManager{
@@ -12,13 +13,21 @@ class EngineManager{
         this.Graphics = new Graphics(gameCanvas)
         
         await this.Graphics.loadImage(
-            "player","../images/character/player.png"
+            "player","../images/character/player.png",
+            
+        )
+
+        await this.Graphics.loadImage(
+            "testPlayer","../images/character/testPlayer.png"
         )
 
         this.Frames = new Frames()
         this.Frames.startLoop()
 
         this.Physics = new Physics()
+
+        this.InputManager = new InputManager()
+        this.InputManager.trackInput()
 
         console.log("engine started!")
     }
@@ -42,6 +51,7 @@ class EngineManager{
         this.Graphics.drawCircle(200,70,20,"blue")
 
         this.Graphics.drawImage("player",50,50)
+        this.Graphics.drawImage("testPlayer",100,100)
 
         console.log("drawed")
     }

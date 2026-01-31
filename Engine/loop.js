@@ -23,8 +23,11 @@ export class Frames{
         this.lastTime = currentFrame
 
         //makes sure loop keeps running in the background
+        //console.log("Frame")
         requestAnimationFrame(this.loop)
     }
+
+    //werererer
 
     getDelta(){
         return this.delta
