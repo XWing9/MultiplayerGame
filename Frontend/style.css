@@ -1,0 +1,23 @@
+#body{
+    margin: 0px;
+    overflow: hidden;
+}
+#headerDiv{
+}
+#mainDiv{
+    margin: 2px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#canvasDiv{
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+#gameCanvas{
+    display: block;
+    border: solid 2px;
+}
