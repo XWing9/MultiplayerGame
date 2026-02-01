@@ -65,24 +65,15 @@ class EngineManager{
           console.log("engine isnt started!")
           return  
         }
+
+        //change for method to draw background
+        this.Graphics.drawCircle(200,70,20,"blue")
         
         for(const entity of this.entityList){
-            const entityImage = this.entityList[entity].Image
-            const entityX = this.entityList[entity].x
-            const entityY = this.entityList[entity].y
-            this.Graphics.drawImage(entityImage,entityX,entityY)
+            this.Graphics.drawEntitys(entity)
         }
 
-        this.Graphics.drawCircle(200,70,20,"blue")
-
-        this.Graphics.drawImage("player",50,50)
-        this.Graphics.drawImage("testPlayer",100,100)
-
         console.log("drawed")
-    }
-
-    loadImages(){
-        
     }
 
     createEntity(name,x,y,Image){
@@ -93,6 +84,10 @@ class EngineManager{
     //wrapper methods
     isKeyDown(key){
         return this.InputManager.isKeyDown(key)
+    }
+
+    async loadImage(name,src){
+        return await this.Graphics.loadImage(name,src)
     }
 }
 

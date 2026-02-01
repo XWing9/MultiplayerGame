@@ -13,13 +13,16 @@ export class Graphics{
     //loads one image
     loadImage(name,src){
         return new Promise((resolve, reject) => {
-            const img = new Image()
+            if(this.images.has(name)){
+                return this.images.get(name)
+            }
 
+            const img = new Image()
             img.src = src
 
             img.onload = () =>{
                 this.images.set(name, img) //writes key and img into dict
-                resolve()
+                resolve(img)
             }
 
             img.onerror = () =>{
@@ -28,15 +31,16 @@ export class Graphics{
         })
     }
 
-    async loadImages(imageDictionary){
-        const promises = []
+    getImage(name){
+        return this.images.get(name)
+    }
 
-        //loops through the given dictionary entries and loads them
-        for (const [name,src] of Object.entries(imageDictionary)){
-            promises.push(this.loadImage(name,src))
-        }
-
-        await Promise.all(promises)
+    drawEntitys(entity){
+        this.brush.drawImage(
+            entity.image,
+            entity.x,
+            entity.y
+        )
     }
 
     //depending on render function remove
@@ -52,15 +56,15 @@ export class Graphics{
     }
 
     //remove
-    drawCircle(x,y,radius,color){
-        this.queue.push({type: "circle",x,y,radius,color})
-        this.render()
-    }
-
-    //remove
     changeCanvasBackground(color){
         this.brush.fillStyle = color
         this.brush.fillRect(0,0, this.canvas.width, this.canvas.height)
+    }
+
+    //remove
+    drawCircle(x,y,radius,color){
+        this.queue.push({type: "circle",x,y,radius,color})
+        this.render()
     }
 
     //renderPipe will replace this
@@ -75,10 +79,6 @@ export class Graphics{
             }
         }
         this.queue = []
-    }
-
-    submitToPipe(item){
-        this.queue.push(item)
     }
 
     //make real pipeline able to render everything
