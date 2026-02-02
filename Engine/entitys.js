@@ -6,5 +6,4 @@ export class Entity{
         this.y = y
         this.image = image
     }
-
 }

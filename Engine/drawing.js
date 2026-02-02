@@ -7,7 +7,6 @@ export class Graphics{
         this.queue = []
         this.images = new Map() //dictionary
 
-        this.changeCanvasBackground("black")
     }
 
     //loads one image

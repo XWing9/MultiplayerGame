@@ -32,11 +32,19 @@ class GameManager{
     }
 
     playerMovement(){
+        console.log(this.player)
         engine.updateQueue.push((delta) =>{
-            const player = engine.entityList.find(e => e.name === "player")
-            if (!player) return
             if (engine.isKeyDown("KeyW")) {
-                player.y -= 150 * delta
+                this.player.y -= 50 * delta
+            }
+            if(engine.isKeyDown("KeyS")) {
+                this.player.y += 50 * delta
+            }
+            if(engine.isKeyDown("KeyA")) {
+                this.player.x -= 50 * delta
+            }
+            if(engine.isKeyDown("KeyD")) {
+                this.player.x += 50 * delta
             }
         })
     }

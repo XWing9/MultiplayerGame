@@ -5,7 +5,7 @@ export class InputManager{
         window.addEventListener("keydown", e => {
             this.keys.add(e.code)
         })
-
+        
         window.addEventListener("keyup", e => {
             this.keys.delete(e.code)
         })

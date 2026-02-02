@@ -66,6 +66,8 @@ class EngineManager{
           return  
         }
 
+        this.Graphics.changeCanvasBackground("black")
+
         //change for method to draw background
         this.Graphics.drawCircle(200,70,20,"blue")
         
@@ -79,6 +81,7 @@ class EngineManager{
     createEntity(name,x,y,Image){
         const entity = new Entity(name,x,y,Image)
         this.entityList.push(entity)
+        return entity
     }
 
     //wrapper methods
