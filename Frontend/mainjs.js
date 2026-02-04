@@ -3,11 +3,11 @@ import { gameManager } from "../GameCode/gameManager.js"
 
 const gameCanvas = document.getElementById("gameCanvas")
 
+const connectToServer = document.getElementById("connectToServer")
 const startGame = document.getElementById("startGame")
-const drawFIeld = document.getElementById("drawField")
 
+connectToServer.addEventListener("click",startBackend )
 startGame.addEventListener("click",startEngine)
-drawFIeld.addEventListener("click",drawField)
 
 async function startEngine(){
     //starts the engine of the game in the background
@@ -16,6 +16,7 @@ async function startEngine(){
     await gameManager.start()
 }
 
-function drawField(){
-    engine.draw(gameCanvas)
+async function startBackend(){
+    //connect to backend server
+    console.log("comming soon")
 }

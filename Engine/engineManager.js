@@ -24,13 +24,20 @@ class EngineManager{
     startEngine = async (gameCanvas) => {
         this.Graphics = new Graphics(gameCanvas)
         
+
         await this.Graphics.loadImage(
-            "player","../images/character/player.png"
-            
+            "background","../images/gameAssets/background.png"
         )
 
         await this.Graphics.loadImage(
-            "testPlayer","../images/character/testPlayer.png"
+            "ball","../images/gameAssets/ball.png"
+        )
+
+        this.createEntity(
+            "ball",
+            142, //change pos to dynamic pos
+            67,
+            this.Graphics.images.get("ball")
         )
 
         //directly starts the main loop and all relevant sub loops that are needed
@@ -66,16 +73,13 @@ class EngineManager{
           return  
         }
 
-        this.Graphics.changeCanvasBackground("black")
-
-        //change for method to draw background
-        this.Graphics.drawCircle(200,70,20,"blue")
+        this.Graphics.drawBackground("background",0,0)
         
         for(const entity of this.entityList){
             this.Graphics.drawEntitys(entity)
         }
 
-        console.log("drawed")
+        //console.log("drawed")
     }
 
     createEntity(name,x,y,Image){

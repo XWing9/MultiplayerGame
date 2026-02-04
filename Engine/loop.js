@@ -12,7 +12,7 @@ export class Frames{
 
     startLoop() {
         this.running = true
-        this.lastTime = performance.now()
+        this.lastTime = performance.now() / 1000  // Convert to seconds
         requestAnimationFrame(this.loop)
     }
 

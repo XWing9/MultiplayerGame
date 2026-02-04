@@ -27,23 +27,19 @@ class GameManager{
             50,
             playerImg
         )
-
         this.playerMovement()
     }
 
     playerMovement(){
-        console.log(this.player)
-        engine.updateQueue.push((delta) =>{
+        //diagonal movement can fow now only be prevented like this
+        engine.physicsQueue.push((delta) =>{
             if (engine.isKeyDown("KeyW")) {
                 this.player.y -= 50 * delta
-            }
-            if(engine.isKeyDown("KeyS")) {
+            } else if(engine.isKeyDown("KeyS")) {
                 this.player.y += 50 * delta
-            }
-            if(engine.isKeyDown("KeyA")) {
+            } else if(engine.isKeyDown("KeyA")) {
                 this.player.x -= 50 * delta
-            }
-            if(engine.isKeyDown("KeyD")) {
+            } else if(engine.isKeyDown("KeyD")) {
                 this.player.x += 50 * delta
             }
         })
@@ -51,6 +47,3 @@ class GameManager{
 }
 
 export const gameManager = new GameManager() 
-
-//heeelllllo
-//smile :)

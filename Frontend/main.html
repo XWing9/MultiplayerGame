@@ -10,10 +10,10 @@
     <body id="body">
         <div id="mainDiv">
             <div id="headerDiv">
-                <button>connect or so?</button>
+                <!-- let backend/connection start over this button -->
+                <button id="connectToServer" class="button">connect to server</button>
                 <!--make the engine start over this button-->
-                <button id="startGame" class="button">start up game</button>
-                <button id="drawField" class="button">drawfield</button>
+                <button id="startGame" class="button">start engine</button>
             </div>
             <div id="canvasDiv">
                 <canvas id="gameCanvas"></canvas>
@@ -24,7 +24,6 @@
 
 <!--to do:
 update render Pipeline
-make player png into objects to be able to move them
 collision checking
 backend / node.js
 network
