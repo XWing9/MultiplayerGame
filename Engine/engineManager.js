@@ -23,7 +23,7 @@ class EngineManager{
 
     startEngine = async (gameCanvas) => {
         this.Graphics = new Graphics(gameCanvas)
-        
+        this.NetworkManager = new NetworkManager
 
         await this.Graphics.loadImage(
             "background","../images/gameAssets/background.png"
@@ -43,6 +43,7 @@ class EngineManager{
         //directly starts the main loop and all relevant sub loops that are needed
         this.Frames = new Frames((delta) => {
             //add network to
+            this.sendData()
             this.update(delta)
             this.physicsUpdate(delta)
             this.draw(gameCanvas)
@@ -54,6 +55,10 @@ class EngineManager{
         this.InputManager = new InputManager()
 
         console.log("engine started!")
+    }
+
+    sendData(){
+        this.NetworkManager.sendPlayerPos(this.entityList)
     }
 
     update(delta){

@@ -5,8 +5,7 @@ export class NetworkManager{
 
     }
 
-    sendPlayerPos(){
-
+    sendPlayerPos(entityList){
     }
 
     receiveEnemyPos(){
