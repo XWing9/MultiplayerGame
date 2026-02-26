@@ -60,4 +60,8 @@ export class Graphics{
     renderingPipe(){
 
     }
+
+    drawCollisionBoxes(){
+        
+    }
 }
