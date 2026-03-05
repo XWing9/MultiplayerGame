@@ -7,7 +7,7 @@ export class Physics{
     }
 
     
-    updatePhysics(physicsList, delta){
+    updatePhysics(physicsList, delta,entityList){
         this.physicsAccumulator += delta * 1000 
 
         while(this.physicsAccumulator >= this.fixedDelta){
@@ -17,12 +17,27 @@ export class Physics{
             this.physicsAccumulator -= this.fixedDelta
 
             //add thing to check collision
+            this.checkEntityPos(entityList)
         }
     }
 
-    checkEntityPos(){
-        array.forEach(element => {
-            
-        });
+    checkEntityPos(entityList){
+        for (let i = 0; i < entityList.length; i++) {
+            const entityA = entityList[i];
+
+            for (let j = i + 1; j < entityList.length; j++) {
+                const entityB = entityList[j];
+
+                if(entityA.isColliding(entityB)){
+                    entityB.x = entityB.x - 1
+                    //console.log("entity is colliding?")
+                    //console.log(entityA)
+                    //console.log(entityB)
+
+                } else {
+                    console.log("entity is not colliding?")
+                }
+            }
+        }
     }
 }

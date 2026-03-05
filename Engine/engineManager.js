@@ -18,7 +18,6 @@ class EngineManager{
         this.updateQueue = []
         this.physicsQueue = []
         this.entityList = []
-
     }
 
     startEngine = async (gameCanvas) => {
@@ -68,7 +67,7 @@ class EngineManager{
     }
 
     physicsUpdate(delta){
-        this.Physics.updatePhysics(this.physicsQueue,delta)
+        this.Physics.updatePhysics(this.physicsQueue,delta,this.entityList)
     }
     
     //change to generall draw function

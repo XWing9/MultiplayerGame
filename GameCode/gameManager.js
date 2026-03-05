@@ -35,6 +35,7 @@ class GameManager{
         engine.physicsQueue.push((delta) =>{
             if (engine.isKeyDown("KeyW")) {
                 this.player.y -= 50 * delta
+                //console.log(this.player)
             } else if(engine.isKeyDown("KeyS")) {
                 this.player.y += 50 * delta
             } else if(engine.isKeyDown("KeyA")) {

@@ -1,13 +1,13 @@
 export class Entity{
-    constructor(name,x,y,image,height,width){
+    constructor(name,x,y,image){
         this.name = name
     
         this.x = x
         this.y = y
         this.image = image
 
-        this.height = height
-        this.width = width
+        this.height = image.width
+        this.width = image.height
     }
 
     get Collision(){
@@ -28,8 +28,8 @@ export class Entity{
     }
 
     isColliding(other){
-        const a = this.collision
-        const b = other.collision
+        const a = this.Collision
+        const b = other.Collision
 
         return !(
             a.x + a.width < b.x ||
